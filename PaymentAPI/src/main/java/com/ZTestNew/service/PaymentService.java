@@ -16,10 +16,11 @@ import org.jsoup.nodes.Document;
 @Path("/Payments")
 public class PaymentService {
 	
-
 	
-	
-
-	
-	
+	@GET
+	@Path("/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<PaymentModel> readPayemnts() {
+		return itemObj.readPayments();
+	}
 }

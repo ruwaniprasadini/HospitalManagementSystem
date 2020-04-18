@@ -56,4 +56,27 @@ public class PaymentService {
 		String output = itemObj.deleteItem(id);
 		return output;
 	}
+	
+	@POST
+	@Path("/paymentDetails/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String insertPaymentDetails(String paymentDetailsData) {
+
+		JsonObject itemObject = new JsonParser().parse(paymentDetailsData).getAsJsonObject();
+
+		String cardNo = itemObject.get("cardNo").getAsString();
+		String cvv = itemObject.get("cvv").getAsString();
+		String patientID = itemObject.get("patientID").getAsString();
+
+		String output = itemObj.insertPaymentDetails(cardNo, cvv, patientID);
+		return output;
+	}
+	
+	@GET
+	@Path("/paymentDetails/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public PaymentDetailsModel readPaymentsDetailsUser(@PathParam("id") String id) {
+		return itemObj.readPaymentsDetailsUser(id);
+	}
 }

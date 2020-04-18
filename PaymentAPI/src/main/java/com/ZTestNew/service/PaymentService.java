@@ -23,4 +23,28 @@ public class PaymentService {
 	public List<PaymentModel> readPayemnts() {
 		return itemObj.readPayments();
 	}
+	
+	@GET
+	@Path("/{user}/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<PaymentModel> readPaymentsUser(@PathParam("id") String id, @PathParam("user") String user) {
+		return itemObj.readPaymentsUser(id, user);
+	}
+	
+	@POST
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String insertPayment(String paymentData) {
+
+		JsonObject itemObject = new JsonParser().parse(paymentData).getAsJsonObject();
+
+		int doctorID = itemObject.get("doctorID").getAsInt();
+		int hospitalID = itemObject.get("hospitalID").getAsInt();
+		int patientID = itemObject.get("patientID").getAsInt();
+		String total = itemObject.get("total").getAsString();
+
+		String output = itemObj.insertPayment(doctorID, hospitalID, patientID, total);
+		return output;
+	}
 }

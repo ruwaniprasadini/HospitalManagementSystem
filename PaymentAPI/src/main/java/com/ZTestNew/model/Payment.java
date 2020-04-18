@@ -63,6 +63,48 @@ public class Payment {
 
 	}
 	
+	public List<PaymentModel> readPayments() {
+		List<PaymentModel> payementesList = new ArrayList<>();
+		String output = "";
+		try {
+			Connection con = connect();
+			if (con == null) {
+//				return "Error while connecting to the database for reading.";
+			}
+
+			String query = "select * from payments";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				String paymentID = Integer.toString(rs.getInt("id"));
+				String patientID = Integer.toString(rs.getInt("patientID"));
+				String hospitalID = Integer.toString(rs.getInt("hospitalID"));
+				String doctorID = Integer.toString(rs.getInt("doctorID"));
+				String total = rs.getString("total");
+				String dates = rs.getString("date");
+
+				PaymentModel paymodel = new PaymentModel();
+				paymodel.setDates(dates);
+				paymodel.setDoctorID(doctorID);
+				paymodel.setHospitalID(hospitalID);
+				paymodel.setPatientID(patientID);
+				paymodel.setPaymentID(paymentID);
+				paymodel.setTotal(total);
+
+				payementesList.add(paymodel);
+
+				System.out.println("lol" + paymentID + patientID);
+
+			}
+
+		} catch (Exception e) {
+
+			System.err.println(e.getMessage() + "---------------------------------------------");
+		}
+		System.out.println(output);
+		return payementesList;
+	}
+	
 	
 
 

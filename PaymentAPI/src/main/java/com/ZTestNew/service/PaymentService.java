@@ -16,6 +16,7 @@ import org.jsoup.nodes.Document;
 @Path("/Payments")
 public class PaymentService {
 	
+	Payment itemObj = new Payment();
 	
 	@GET
 	@Path("/")

@@ -79,4 +79,24 @@ public class PaymentService {
 	public PaymentDetailsModel readPaymentsDetailsUser(@PathParam("id") String id) {
 		return itemObj.readPaymentsDetailsUser(id);
 	}
+	
+	@PUT
+	@Path("/paymentDetails/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updatePaymentDetails(String paymentDetailsData) {
+
+		JsonObject itemObject = new JsonParser().parse(paymentDetailsData).getAsJsonObject();
+
+		String cardNo = itemObject.get("cardNo").getAsString();
+		String cvv = itemObject.get("cvv").getAsString();
+		String patientID = itemObject.get("patientID").getAsString();
+		int ppymentDetailsId = itemObject.get("ppymentDetailsId").getAsInt();
+
+		String output = itemObj.updatePaymentDetails(cardNo, cvv, patientID, ppymentDetailsId);
+		return output;
+
+	}
+	
+	
 }

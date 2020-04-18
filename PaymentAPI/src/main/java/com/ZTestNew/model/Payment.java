@@ -127,6 +127,61 @@ public class Payment {
 		return output;
 	}
 	
+	public List<PaymentModel> readPaymentsUser(String id, String user) {
+		String userType = "";
+		List<PaymentModel> payementesList = new ArrayList<>();
+		switch (user) {
+		case "patient":
+			userType = "patientID";
+			break;
+		case "hospital":
+			userType = "hospitalID";
+			break;
+		case "doctor":
+			userType = "doctorID";
+			break;
+
+		default:
+			break;
+		}
+
+		try {
+			Connection con = connect();
+			if (con == null) {
+//				return "Error while connecting to the database for reading.";
+			}
+
+			String query = "select * from payments where " + userType + " = " + id;
+
+			Statement stmt = con.createStatement();
+
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				String paymentID = Integer.toString(rs.getInt("id"));
+				String patientID = Integer.toString(rs.getInt("patientID"));
+				String hospitalID = Integer.toString(rs.getInt("hospitalID"));
+				String doctorID = Integer.toString(rs.getInt("doctorID"));
+				String total = rs.getString("total");
+				String dates = rs.getString("date");
+
+				PaymentModel paymodel = new PaymentModel();
+				paymodel.setDates(dates);
+				paymodel.setDoctorID(doctorID);
+				paymodel.setHospitalID(hospitalID);
+				paymodel.setPatientID(patientID);
+				paymodel.setPaymentID(paymentID);
+				paymodel.setTotal(total);
+
+				payementesList.add(paymodel);
+
+			}
+
+		} catch (Exception e) {
+
+			System.err.println(e.getMessage());
+		}
+		return payementesList;
+	}
 	
 
 

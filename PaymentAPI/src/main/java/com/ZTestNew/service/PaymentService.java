@@ -47,4 +47,13 @@ public class PaymentService {
 		String output = itemObj.insertPayment(doctorID, hospitalID, patientID, total);
 		return output;
 	}
+	
+	@DELETE
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_XML)
+	public String deletePayment(@PathParam("id") String id) {
+
+		String output = itemObj.deleteItem(id);
+		return output;
+	}
 }

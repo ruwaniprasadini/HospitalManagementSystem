@@ -106,6 +106,28 @@ public class Payment {
 	}
 	
 	
+	public String deleteItem(String paymentID) {
+
+		String output = "";
+		try {
+			Connection con = connect();
+			if (con == null) {
+				return "Error while connecting to the database for deleting.";
+			}
+			String query = "delete from payments where id=?";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			preparedStmt.setInt(1, Integer.parseInt(paymentID));
+			preparedStmt.execute();
+			con.close();
+			output = "Deleted successfully";
+		} catch (Exception e) {
+			output = "Error while deleting the item.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
+	
+	
 
 
 

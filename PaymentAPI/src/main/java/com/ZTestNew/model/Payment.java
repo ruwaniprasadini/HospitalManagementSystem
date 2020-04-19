@@ -22,7 +22,7 @@ public class Payment {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sliitpafs", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hospital_management", "root", "root");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

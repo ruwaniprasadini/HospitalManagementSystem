@@ -29,10 +29,21 @@
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="E:/ecl/asm-all-repackaged-2.1.30.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/cglib-2.1.30.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/guava-13.0.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/hk2-api-2.1.30.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/hk2-locator-2.1.30.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/hk2-utils-2.1.30.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/javax.inject-2.1.30.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/javax.ws.rs-api-2.0-m12.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/jersey-common-2.0-m09.jar"/>
+	<classpathentry kind="lib" path="E:/ecl/osgi-resource-locator-1.0.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
